@@ -6,29 +6,28 @@ app.config['DEBUG'] = True
 
 form = """
 <!DOCTYPE html>
-
 <html>
     <head>
         <style>
-            form {
+            form {{
                 background-color: #eee;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }
-            textarea {
+            }}
+            textarea {{
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
+            }}
         </style>
     </head>
     <body>
       <form method='post'>
              Rotate by: <input type="text" name="rot" value="0"/><br>
-             <textarea name="text"></textarea>
+             <textarea name="text">{0}</textarea>
              <input type="submit" value="Submit Query" />
       </form>
     </body>
@@ -39,11 +38,11 @@ def encrypt():
     text_encrypt = request.form["text"]
     rot_encrypt = int(request.form["rot"])
     mesg_encrypt = rotate_string(text_encrypt, rot_encrypt)
-
-    return "<h1>" + mesg_encrypt + "</h1>"
+    content = "<h1>"+mesg_encrypt+"</h1>"
+    return form.format(content)
 
 @app.route("/")
 def index():
-    return form
+    return form.format("")
 
 app.run()
