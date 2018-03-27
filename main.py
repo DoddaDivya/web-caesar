@@ -38,8 +38,7 @@ def encrypt():
     text_encrypt = request.form["text"]
     rot_encrypt = int(request.form["rot"])
     mesg_encrypt = rotate_string(text_encrypt, rot_encrypt)
-    content = "<h1>"+mesg_encrypt+"</h1>"
-    return form.format(content)
+    return form.format(mesg_encrypt)
 
 @app.route("/")
 def index():
